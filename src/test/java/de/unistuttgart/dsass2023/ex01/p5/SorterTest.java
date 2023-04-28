@@ -16,4 +16,22 @@ public class SorterTest<T> {
 
         assertArrayEquals(sortCheckerList.getSortedArray(), listAsSorted);
     }
+
+    @Test
+    public void testInsertionSort() {
+        InsertionSortCheckerList sortCheckerList = new InsertionSortCheckerList();
+        Sorter.insertionSort(sortCheckerList);
+        Object[] listAsSorted = sortCheckerList.getList().toArray(new Object[sortCheckerList.getSize()]);
+
+        assertArrayEquals(sortCheckerList.getSortedArray(), listAsSorted);
+    }
+
+    @Test
+    public void testBubbleSort() {
+        BubbleSortCheckerList sortCheckerList = new BubbleSortCheckerList();
+        Sorter.bubbleSort(sortCheckerList);
+        Object[] listAsSorted = sortCheckerList.getList().toArray(new Object[sortCheckerList.getSize()]);
+
+        assertArrayEquals(sortCheckerList.getSortedArray(), listAsSorted);
+    }
 }

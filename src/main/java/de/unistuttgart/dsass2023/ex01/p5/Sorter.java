@@ -1,7 +1,5 @@
 package de.unistuttgart.dsass2023.ex01.p5;
 
-import javax.naming.spi.DirStateFactory;
-import javax.xml.transform.Result;
 
 public class Sorter {
 
@@ -18,7 +16,7 @@ public class Sorter {
 	public static <T extends Comparable<T>> void selectionSort(ISimpleList<T> list) {
 		for (int i = 0; i < list.getSize() - 1; i++)
 			for (int j = i + 1; j <list.getSize(); j++)
-				if (Integer.signum(list.getElement(i).compareTo(list.getElement(j))) == 1)
+				if (Integer.signum(list.getElement(i).compareTo(list.getElement(j))) == -1)
 					list.swapElements(i, j);
 	}
 
@@ -31,11 +29,10 @@ public class Sorter {
 	 *             in the end
 	 */
 	public static <T extends Comparable<T>> void insertionSort(ISimpleList<T> list) {
-		Object store;
-		for (int i = 1; i < list.getSize(); i++) {
-			store = list.getElement(i);
-			int pos = i;
-			while (pos > 0 && Integer.parseInt(list.getElement(pos - 1).toString()) > Integer.parseInt(store.toString())){
+        for (int i = 1; i < list.getSize(); i++) {
+            T store = list.getElement(i);
+            int pos = i;
+            while (pos > 0 && Integer.signum(list.getElement(pos - 1).compareTo(store)) == -1){
 				list.swapElements(pos, pos - 1);
 				pos--;
 			}
@@ -51,7 +48,10 @@ public class Sorter {
 	 *             in the end
 	 */
 	public static <T extends Comparable<T>> void bubbleSort(ISimpleList<T> list) {
-		
+		for (int i = 1; i < list.getSize(); i++)
+			for (int j = 0; j < list.getSize() - i; j++)
+				if (Integer.signum(list.getElement(j).compareTo(list.getElement(j + 1))) == -1)
+					list.swapElements(j, j + 1);
 	}
 }
 
